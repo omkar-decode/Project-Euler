@@ -1,0 +1,10 @@
+Solved Questions:
+! --> amazing code
+^ --> not sure how the code works
+@ --> better solution must exist
+
+
+Unsolved Questions:
+# --> code not correct
+$ --> high execution time
+~ --> incorrect answer
