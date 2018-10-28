@@ -1,7 +1,32 @@
-#primes = [2]+[i for i in xrange(3, 1000000, 2) if all(i%j for j in xrange(3, i/2+1, 2))]
-#print sum(primes)
-tot = 2; count = 1
-for i in xrange(3, 1000000, 2):
-    if all(i%j for j in xrange(3, i/2+1, 2)):
-        tot+=i; count+=1
-print tot        
+import time
+start_time = time.clock()
+
+#print ("Execution time: %.4f" %(time.clock() - start_time)) + " sec"    
+
+
+n = 10000      
+sieve = [1 for i in xrange(n+1)]
+
+primes = []
+for i in xrange(2, n):
+
+    if sieve[i] == 1:
+        primes.append(i)
+
+        for j in xrange((2*i), n+1, i):
+            sieve[j] = 0
+
+d = len(primes)
+print d
+
+total = 0
+index = 0
+while (index<d and total < n):
+    total += primes[index]
+    index += 1
+
+##total -= primes[index-1]
+##print index+1
+##print primes[index-1]
+##print total
+##print 

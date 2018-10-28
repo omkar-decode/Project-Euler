@@ -23,7 +23,7 @@ def ModifiedDijkstra(grid, n, startCell, endCell):
     dy = [0, 1, 0, -1]
 
     # format of a node is [x, y, dist]
-    visNodes = [[0, start_x, start_y]]
+    visNodes = [[start_x, start_y, 0]]
 
     # base case
     dist[0][0] = grid[0][0]
@@ -63,21 +63,22 @@ def ModifiedDijkstra(grid, n, startCell, endCell):
     return (dist[end_x][end_y])
                                 
 
+if __name__ == "__main__" :
 
-n = 80
-INFINITY = (10**10)
+    n = 80
+    INFINITY = (10**10)
 
-f = open("p083_matrix.txt", "r")
-grid = f.read().split()
+    f = open("p083_matrix.txt", "r")
+    grid = f.read().split()
 
-for l in xrange(n):
-    grid[l] = map(int, grid[l].split(','))
+    for l in xrange(n):
+        grid[l] = map(int, grid[l].split(','))
 
-startCell = [0,0]
-endCell = [n-1, n-1]
-minCost = ModifiedDijkstra(grid, n, startCell, endCell)
+    startCell = [0,0]
+    endCell = [n-1, n-1]
+    minCost = ModifiedDijkstra(grid, n, startCell, endCell)
 
-print minCost
+    print minCost
 
 
 print ("Execution time: %.4f" %(time.clock() - start_time)) + " sec"

@@ -348,50 +348,51 @@ def winner(player1, player2):
     return high_card(player1, player2)
     
     
-
-fp = open("p054_poker.txt", "r")
-hands = fp.read().split("\n")
-hands.pop()
-
-
-win_one = 0; win_two = 0
-
-for hand in hands:
-    player1 = (hand[:14]).split()
-    player2 = (hand[15:]).split()
-
-    for index in xrange(5):
-        card1 = player1[index]
-        card2 = player2[index]
-        
-        card1 = card1.replace("T", "9V")
-        card1 = card1.replace("J", "9W")
-        card1 = card1.replace("Q", "9X")
-        card1 = card1.replace("K", "9Y")
-        card1 = card1.replace("A", "9Z")
-
-        card2 = card2.replace("T", "9V")
-        card2 = card2.replace("J", "9W")
-        card2 = card2.replace("Q", "9X")
-        card2 = card2.replace("K", "9Y")
-        card2 = card2.replace("A", "9Z")
-
-        player1[index] = card1
-        player2[index] = card2
+if __name__ == "__main__":
     
+    fp = open("p054_poker.txt", "r")
+    hands = fp.read().split("\n")
+    hands.pop()
+
+
+    win_one = -7; win_two = 7
+
+    for hand in hands:
+        player1 = (hand[:14]).split()
+        player2 = (hand[15:]).split()
+
+        for index in xrange(5):
+            card1 = player1[index]
+            card2 = player2[index]
+            
+            card1 = card1.replace("T", "9V")
+            card1 = card1.replace("J", "9W")
+            card1 = card1.replace("Q", "9X")
+            card1 = card1.replace("K", "9Y")
+            card1 = card1.replace("A", "9Z")
+
+            card2 = card2.replace("T", "9V")
+            card2 = card2.replace("J", "9W")
+            card2 = card2.replace("Q", "9X")
+            card2 = card2.replace("K", "9Y")
+            card2 = card2.replace("A", "9Z")
+
+            player1[index] = card1
+            player2[index] = card2
         
-    player1.sort()
-    player2.sort()
+            
+        player1.sort()
+        player2.sort()
 
-    #print player1, player2
-    #break
+        #print player1, player2
+        #break
 
-    if(winner(player1, player2) == "one"):
-        win_one += 1
-    if(winner(player1, player2) == "two"):
-        win_two += 1    
+        if(winner(player1, player2) == "one"):
+            win_one += 1
+        if(winner(player1, player2) == "two"):
+            win_two += 1    
 
-print win_one, win_two        
+    print win_one, win_two        
     
 print "Execution time: %.4f" %(time.clock() - start_time) + " sec"
 

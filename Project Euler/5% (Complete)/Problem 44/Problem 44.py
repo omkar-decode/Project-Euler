@@ -17,7 +17,7 @@ def IsPentagon (x):
     return False
 
 
-# the approach is a hit and trial one
+# the approach is a complete exhaustive search one
   
 if __name__ == "__main__":
 

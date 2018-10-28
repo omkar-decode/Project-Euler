@@ -14,7 +14,7 @@ def countPartitions(n):
         for j in xrange(i, n+1):
             table[j] += table[j-i]
 
-    print table
+    #print table
     return table[n]
 
 

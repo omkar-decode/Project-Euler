@@ -1,39 +1,74 @@
 import time
 start_time = time.clock()
 
+  
+def SievePrimes (n):        
+    sieve = [1 for i in xrange(n+1)]
+    primes = []
+    for p in xrange(2, n):
+        if sieve[p] == 1:
+            primes.append(p)
 
-def totient(P_fac, n):
-    prod = n
-    for i in P_fac:
-        prod /= i
-        prod *= (i-1)
+            for j in xrange((2*p), n+1, p):
+                sieve[j] = 0
 
-    return prod    
-        
-    
-primes = [num for num in xrange(3, 500000, 2) if all(num%j!=0 for j in xrange(3, int(num**(0.5))+1, 2))]
-primes.insert(0, 2)
-#print primes
+    return [sieve, primes]
 
-totient_sum = 2
-for n in xrange(2, 1000001):
-    P_factors = []
-    temp = n
+
+def Totient (n):
+    result = n
+    check = int(n**0.5)
+
     for p in primes:
-
-        if temp==1:
-            tot = totient(P_factors, n)
-            totient_sum += tot
+        if (p > check):
             break
 
-        if not n%p==0:
+        while (n%p == 0):
+            n /= p
+            result -= (result // p)
+
+    if (n > 1):
+        result -= (result // n)
+
+    return result
+
+
+def CheckPerm (a, b):
+    strA = list(str(a))
+    strB = list(str(b))
+
+    strA.sort()
+    strB.sort()
+
+    if (strA == strB):
+        return True
+
+    return False
+
+
+if __name__ == "__main__":
+
+    n = (10**7)
+    sieve, primes = SievePrimes(n)
+
+    minRatio = 100000
+    nVal = -1
+
+    for k in xrange(2, n):
+        if (sieve[k] == 1):
             continue
 
-        P_factors.append(p)
-        while temp%p==0:
-            temp /= p
-        
+        t = Totient(k)
+        if (CheckPerm(k, t)):
+            ratio = float(k)/float(t)
 
-print totient_sum
+            if (minRatio > ratio):
+                minRatio = ratio
+                nVal = k
+
+    print nVal            
+
 
 print "Execution time: %.4f" %(time.clock() - start_time) + " sec"
+
+
