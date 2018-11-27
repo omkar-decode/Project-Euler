@@ -1,3 +1,20 @@
+
+# this problem can be solved using just a pen and paper
+# we know, phi(n) = n * (1-(1/p1))*(1-(1/p2))*...*(1-(1/pk)), where p1,p2,...,pk are the k distinct prime factors of n
+
+# therefore, we get (n / phi(n)) = Product [pi/(pi-1)] for i going from 1 to k
+# in order to maximise the LHS, we need to maximise the number of prime factors of n (i.e., maximise k), since
+# the RHS is product of k numbers all of which are greater than 1
+
+# if we start with 2 and take each prime number exactly once, we see that:
+#	2 x 3 x 5 x 7 x 11 x 13 x 17 = 510510
+
+# taking any more primes would make n > 1,000,000
+# therefore, the n which maximises the ratio is 510510
+
+
+# the method below is a very inefficient one
+
 def totient(P_fac):
     prod = 1.0
     for i in P_fac:
